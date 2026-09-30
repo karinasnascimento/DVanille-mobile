@@ -35,9 +35,14 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 6),
-                Text('Olá, ${state.user.nome.split(' ').first}!',
-                    style: Theme.of(context).textTheme.headlineSmall),
+                const SizedBox(height: 2),
+                Text(
+                  'Olá ${state.user.nome.split(' ').first}!',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontFamily: 'CreamCake',
+                    fontSize: 50
+                  ),
+                ),
                 const SizedBox(height: 4),
                 Text('Que tal um docinho hoje?', style: Theme.of(context).textTheme.bodyMedium),
                 const SizedBox(height: 16),
@@ -165,9 +170,9 @@ class _HomeDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 24),
-            const Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: DVanilleLogo(height: 56)),
-            const SizedBox(height: 20),
+            const SizedBox(height: 3),
+            const Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: DVanilleLogo(height: 100)),
+            const SizedBox(height: 0.1),
             const Divider(),
             _drawerItem(context, Icons.home_outlined, 'Início', () => Navigator.pop(context)),
             _drawerItem(context, Icons.favorite_border, 'Favoritos', () {

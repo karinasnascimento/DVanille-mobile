@@ -16,10 +16,7 @@ class CartScreen extends StatelessWidget {
         listenable: state,
         builder: (context, _) {
           if (state.cartItems.isEmpty) {
-            return EmptyState(
-              icon: Icons.shopping_bag_outlined,
-              message: 'Seu carrinho está vazio.',
-              buttonLabel: 'VER CARDÁPIO',
+            return _CartEmptyState(
               onButtonTap: () => Navigator.pushNamed(context, '/cardapio'),
             );
           }
@@ -52,7 +49,7 @@ class CartScreen extends StatelessWidget {
                               Text(item.produto.nome,
                                   style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.brownStrong)),
                               const SizedBox(height: 4),
-                              Text('R\$ ${item.produto.preco.toStringAsFixed(2).replaceAll('.', ',')}',
+                              Text('R\$ ${item.precoUnitario.toStringAsFixed(2).replaceAll('.', ',')}',
                                   style: const TextStyle(color: AppColors.textMuted, fontSize: 13)),
                             ],
                           ),
@@ -93,6 +90,45 @@ class CartScreen extends StatelessWidget {
           child: Icon(icon, size: 15, color: AppColors.brownStrong),
         ),
       );
+}
+
+class _CartEmptyState extends StatelessWidget {
+  final VoidCallback onButtonTap;
+
+  const _CartEmptyState({
+    required this.onButtonTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'sacola_lacinho.png',
+              width: 90,
+              height: 90,
+              fit: BoxFit.contain,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Seu carrinho está vazio.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: onButtonTap,
+              child: const Text('VER CARDÁPIO'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _CartSummary extends StatelessWidget {

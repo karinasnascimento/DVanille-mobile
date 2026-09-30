@@ -30,6 +30,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   @override
+  void dispose() {
+    _trocoCtrl.dispose();
+    _numeroCtrl.dispose();
+    _nomeCtrl.dispose();
+    _validadeCtrl.dispose();
+    _cvvCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = AppState.instance;
     final total = state.cartSubtotal + state.taxaEntregaAtual;
@@ -52,7 +62,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               childAspectRatio: 1.7,
               children: [
                 _method(MetodoPagamento.dinheiro, Icons.payments_outlined, 'DINHEIRO'),
-                _method(MetodoPagamento.cartaoCredito, Icons.credit_card, 'CARTÃO'),
+                _method(MetodoPagamento.cartaoCredito, Icons.credit_card, 'CRÉDITO'),
+                _method(MetodoPagamento.cartaoDebito, Icons.credit_card_outlined, 'DÉBITO'),
                 _method(MetodoPagamento.pix, Icons.qr_code, 'PIX'),
                 _method(MetodoPagamento.carteira, Icons.account_balance_wallet_outlined, 'CARTEIRA'),
               ],

@@ -26,3 +26,8 @@ flutter:
     - assets/logo.3.png
     - assets/lacinho.png
     - assets/1.png
+
+  fonts:
+  - family: CreamCake
+    fonts:
+      - asset: assets/fonts/Cream Cake.otf

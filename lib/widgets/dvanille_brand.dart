@@ -79,7 +79,7 @@ class DVanilleHeader extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.title,
     this.showBack = false,
-    this.showMark = true,
+    this.showMark = false,
     this.actions,
     this.showDrawerButton = false,
   });
@@ -100,7 +100,15 @@ class DVanilleHeader extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 )
               : null),
-      title: Text(title ?? "D'Vanille"),
+              title: title == null
+              ? const DVanilleLogo(height: 70)
+              : Text(
+                title!,
+                style: const TextStyle(
+                  fontFamily: 'CreamCake',
+                  fontSize: 40,
+                ),
+              ),
       actions: [
         ...?actions,
         if (showMark)

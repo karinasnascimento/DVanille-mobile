@@ -205,14 +205,18 @@ class AppState extends ChangeNotifier {
   int _orderSeq = 123;
 
   Order createOrder() {
+    if (cartItems.isEmpty) {
+      throw StateError('Não é possível criar um pedido com o carrinho vazio.');
+    }
+
     final numero = '#${(_orderSeq++).toString().padLeft(6, '0')}';
     final order = Order(
       id: IdGen.next('o'),
       numeroPedido: numero,
       data: DateTime.now(),
-      produtos: List<CartItem>.from(
-        cartItems.map((c) => CartItem(produto: c.produto, quantidade: c.quantidade)),
-      ),
+      produtos: cartItems
+          .map((c) => CartItem(produto: c.produto, quantidade: c.quantidade))
+          .toList(),
       subtotal: cartSubtotal,
       taxaEntrega: taxaEntregaAtual,
       total: cartSubtotal + taxaEntregaAtual,
@@ -222,8 +226,10 @@ class AppState extends ChangeNotifier {
           : null,
       metodoPagamento: metodoPagamentoSelecionado ?? MetodoPagamento.pix,
     );
+
     orders.insert(0, order);
-    clearCart();
+    cartItems.clear();
+    resetCheckout();
     addNotification(
       titulo: 'Pedido realizado',
       mensagem: 'Seu pedido ${order.numeroPedido} foi recebido.',
@@ -231,6 +237,13 @@ class AppState extends ChangeNotifier {
     );
     notifyListeners();
     return order;
+  }
+
+  void resetCheckout() {
+    tipoEntregaSelecionada = TipoEntrega.delivery;
+    enderecoSelecionado = null;
+    metodoPagamentoSelecionado = null;
+    trocoPara = null;
   }
 
   void advanceOrderStatus(Order order) {

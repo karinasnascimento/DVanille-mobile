@@ -57,10 +57,16 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                   ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(context, '/main', (r) => false);
-                    Navigator.pushNamed(context, '/rastreamento', arguments: o);
-                  },
+                  onPressed: o == null
+                      ? null
+                      : () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/rastreamento',
+                            (route) => route.settings.name == '/main',
+                            arguments: o,
+                          );
+                        },
                   child: const Text('ACOMPANHAR PEDIDO'),
                 ),
                 const SizedBox(height: 10),

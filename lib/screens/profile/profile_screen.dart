@@ -18,9 +18,8 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                const SizedBox(height: 14),
-                const DVanilleMark(size: 84),
-                const SizedBox(height: 12),
+                const DVanilleMark(size: 200),
+                const SizedBox(height: 3),
                 Text(state.user.nome, style: Theme.of(context).textTheme.titleLarge),
                 Text(state.user.email, style: Theme.of(context).textTheme.bodySmall),
                 const SizedBox(height: 16),

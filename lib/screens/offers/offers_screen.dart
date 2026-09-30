@@ -147,7 +147,6 @@ class _GiftCardScreenState extends State<GiftCardScreen> {
                   : () {
                       final card = AppState.instance.buyGiftCard(selected!);
                       showBrandSnackBar(context, 'Vale-presente criado com sucesso!', icon: Icons.card_giftcard);
-                      Navigator.pop(context);
                       showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
@@ -163,7 +162,13 @@ class _GiftCardScreenState extends State<GiftCardScreen> {
                             ],
                           ),
                           actions: [
-                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK')),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                              child: const Text('OK'),
+                            ),
                           ],
                         ),
                       );

@@ -30,6 +30,7 @@ class _MenuScreenState extends State<MenuScreen> {
       } else if (widget.initialCategory != null) {
         filters.categoria = widget.initialCategory;
       }
+      filters.restricoes.addAll(AppState.instance.user.restricoes);
       _initialized = true;
     }
   }

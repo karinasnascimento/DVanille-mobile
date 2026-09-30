@@ -178,7 +178,11 @@ class CartItem {
   final Product produto;
   int quantidade;
   CartItem({required this.produto, this.quantidade = 1});
-  double get subtotal => produto.preco * quantidade;
+
+  double get precoUnitario =>
+      produto.emOferta && produto.precoOferta != null ? produto.precoOferta! : produto.preco;
+
+  double get subtotal => precoUnitario * quantidade;
 }
 
 enum TipoEntrega { retirada, delivery }
