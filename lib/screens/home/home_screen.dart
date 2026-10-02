@@ -175,6 +175,10 @@ class _HomeDrawer extends StatelessWidget {
             const SizedBox(height: 0.1),
             const Divider(),
             _drawerItem(context, Icons.home_outlined, 'Início', () => Navigator.pop(context)),
+            _drawerItem(context, Icons.local_cafe_outlined, 'Conheça', () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/conheca');
+            }),
             _drawerItem(context, Icons.favorite_border, 'Favoritos', () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/favoritos');

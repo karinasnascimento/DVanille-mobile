@@ -49,6 +49,7 @@ Assets de marca em `assets/`:
 - `1.png` — versão circular/compacta (headers, perfil)
 - `lacinho.png` — lacinho decorativo (rodapés, cantos, confirmações)
 - `sacola_lacinho.png` — sacola com lacinho decorativo (carrinho vazio)
+- `fachada.png` — imagem fictícia da cafeteria (página de conheça)
 
 ## Funcionalidades implementadas
 

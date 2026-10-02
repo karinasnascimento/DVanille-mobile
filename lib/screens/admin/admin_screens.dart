@@ -12,7 +12,13 @@ class AdminDashboardScreen extends StatelessWidget {
     final state = AppState.instance;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("D'Vanille Admin"),
+        title: const Text(
+          "D'Vanille Admin",
+          style: TextStyle(
+            fontFamily: 'CreamCake',
+            fontSize: 40
+          )
+        ),
         leading: IconButton(
           icon: const Icon(Icons.logout, color: AppColors.brownStrong),
           tooltip: 'Sair do modo admin',

@@ -32,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
                 _tile(context, Icons.favorite_border, 'Meus favoritos', '/favoritos'),
                 _tile(context, Icons.location_on_outlined, 'Meus endereços', '/enderecos'),
                 _tile(context, Icons.restaurant_menu_outlined, 'Restrições alimentares', '/restricoes'),
+                _tile(context, Icons.local_cafe_outlined, 'Conheça a D’Vanille', '/conheca'),
                 _tile(context, Icons.notifications_none, 'Notificações', '/notificacoes'),
                 _tile(context, Icons.settings_outlined, 'Configurações', '/configuracoes'),
                 if (state.isAdmin)
