@@ -48,6 +48,7 @@ Assets de marca em `assets/`:
 - `logo.3.png` — logo completa (telas institucionais, autenticação, confirmações)
 - `1.png` — versão circular/compacta (headers, perfil)
 - `lacinho.png` — lacinho decorativo (rodapés, cantos, confirmações)
+- `sacola_lacinho.png` — sacola com lacinho decorativo (carrinho vazio)
 
 ## Funcionalidades implementadas
 
