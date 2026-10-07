@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 
-/// Logo completa (logo.3.png) — usar em telas institucionais, autenticação,
-/// confirmações e rodapés, onde há espaço para a logo completa.
 class DVanilleLogo extends StatelessWidget {
   final double height;
   const DVanilleLogo({super.key, this.height = 64});
@@ -26,8 +24,6 @@ class DVanilleLogo extends StatelessWidget {
   }
 }
 
-/// Versão compacta/circular (1.png) — usar em headers, menu, perfil e
-/// componentes pequenos.
 class DVanilleMark extends StatelessWidget {
   final double size;
   const DVanilleMark({super.key, this.size = 34});
@@ -50,8 +46,6 @@ class DVanilleMark extends StatelessWidget {
   }
 }
 
-/// Lacinho decorativo (lacinho.png) — usar com moderação, em rodapés,
-/// cantos, login/cadastro e confirmações.
 class BowDecoration extends StatelessWidget {
   final double size;
   const BowDecoration({super.key, this.size = 46});
@@ -67,7 +61,6 @@ class BowDecoration extends StatelessWidget {
   }
 }
 
-/// AppBar padrão com o mark circular da marca à direita.
 class DVanilleHeader extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final bool showBack;
@@ -90,7 +83,7 @@ class DVanilleHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: showBack
           ? IconButton(
               icon: const Icon(Icons.arrow_back, color: AppColors.brownStrong),
-              onPressed: () => Navigator.of(context).maybePop(),
+              onPressed: () => Navigator.of(context).pop(),
             )
           : (showDrawerButton
               ? Builder(
@@ -107,6 +100,7 @@ class DVanilleHeader extends StatelessWidget implements PreferredSizeWidget {
                 style: const TextStyle(
                   fontFamily: 'CreamCake',
                   fontSize: 40,
+                  color: AppColors.danger,
                 ),
               ),
       actions: [

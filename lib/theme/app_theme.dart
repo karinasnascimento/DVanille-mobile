@@ -11,7 +11,7 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color success = Color(0xFF7C9A72);
   static const Color warning = Color(0xFFC98A4B);
-  static const Color danger = Color(0xFFB56262);
+  static const Color danger = Color(0xFFC98F8C);
   static const Color textMuted = Color(0xFFA6957E);
 }
 

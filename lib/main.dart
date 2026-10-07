@@ -19,6 +19,7 @@ import 'screens/profile/addresses_screen.dart';
 import 'screens/profile/restrictions_notifications_settings.dart';
 import 'screens/conheca/conheca_screen.dart';
 import 'screens/admin/admin_screens.dart';
+import 'screens/contato/contato_screen.dart';
 
 void main() {
   runApp(const DVanilleApp());
@@ -48,6 +49,7 @@ class DVanilleApp extends StatelessWidget {
         '/cardapio': (context) => const MenuScreen(),
         '/ofertas': (context) => const OffersScreen(),
         '/conheca': (context) => const ConhecaScreen(),
+        '/contato': (context) => const ContatoScreen(),
 
         // Favoritos / vale-presente
         '/favoritos': (context) => const FavoritesScreen(),

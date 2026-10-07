@@ -16,7 +16,8 @@ class AdminDashboardScreen extends StatelessWidget {
           "D'Vanille Admin",
           style: TextStyle(
             fontFamily: 'CreamCake',
-            fontSize: 40
+            fontSize: 40,
+            color: AppColors.danger,
           )
         ),
         leading: IconButton(

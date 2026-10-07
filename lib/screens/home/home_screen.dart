@@ -17,7 +17,10 @@ class HomeScreen extends StatelessWidget {
         showDrawerButton: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: AppColors.brownStrong),
+            icon: const Icon(
+              Icons.notifications_none,
+              color: AppColors.brownStrong,
+            ),
             onPressed: () => Navigator.pushNamed(context, '/notificacoes'),
           ),
         ],
@@ -40,16 +43,23 @@ class HomeScreen extends StatelessWidget {
                   'Olá ${state.user.nome.split(' ').first}!',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontFamily: 'CreamCake',
-                    fontSize: 50
+                    fontSize: 50,
+                    color: AppColors.danger,
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text('Que tal um docinho hoje?', style: Theme.of(context).textTheme.bodyMedium),
+                Text(
+                  'Que tal um docinho hoje?',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
                 const SizedBox(height: 16),
                 GestureDetector(
                   onTap: () => Navigator.pushNamed(context, '/cardapio'),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.white,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -57,9 +67,16 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: const [
-                        Icon(Icons.search, color: AppColors.textMuted, size: 20),
+                        Icon(
+                          Icons.search,
+                          color: AppColors.textMuted,
+                          size: 20,
+                        ),
                         SizedBox(width: 10),
-                        Text('O que você procura?', style: TextStyle(color: AppColors.textMuted)),
+                        Text(
+                          'O que você procura?',
+                          style: TextStyle(color: AppColors.textMuted),
+                        ),
                       ],
                     ),
                   ),
@@ -76,7 +93,11 @@ class HomeScreen extends StatelessWidget {
                       return CategoryChip(
                         label: cat.label,
                         selected: false,
-                        onTap: () => Navigator.pushNamed(context, '/cardapio', arguments: cat),
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          '/cardapio',
+                          arguments: cat,
+                        ),
                       );
                     },
                   ),
@@ -94,8 +115,12 @@ class HomeScreen extends StatelessWidget {
                         width: 140,
                         child: ProductCard(
                           product: p,
-                          onTap: () => Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => ProductDetailsScreen(product: p))),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductDetailsScreen(product: p),
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -114,8 +139,12 @@ class HomeScreen extends StatelessWidget {
                         width: 140,
                         child: ProductCard(
                           product: p,
-                          onTap: () => Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => ProductDetailsScreen(product: p))),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductDetailsScreen(product: p),
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -140,7 +169,10 @@ class HomeScreen extends StatelessWidget {
                               ? 'Confira nossas ofertas especiais'
                               : '${ofertas.length} produtos em oferta especial',
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.brownStrong),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.brownStrong,
+                          ),
                         ),
                       ],
                     ),
@@ -167,55 +199,104 @@ class _HomeDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: AppColors.cream,
       child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 3),
-            const Padding(padding: EdgeInsets.symmetric(horizontal: 20), child: DVanilleLogo(height: 100)),
-            const SizedBox(height: 0.1),
-            const Divider(),
-            _drawerItem(context, Icons.home_outlined, 'Início', () => Navigator.pop(context)),
-            _drawerItem(context, Icons.local_cafe_outlined, 'Conheça', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/conheca');
-            }),
-            _drawerItem(context, Icons.favorite_border, 'Favoritos', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/favoritos');
-            }),
-            _drawerItem(context, Icons.receipt_long_outlined, 'Meus pedidos', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/pedidos');
-            }),
-            _drawerItem(context, Icons.card_giftcard_outlined, 'Vale-presente', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/ofertas');
-            }),
-            _drawerItem(context, Icons.settings_outlined, 'Configurações', () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/configuracoes');
-            }),
-            if (state.isAdmin)
-              _drawerItem(context, Icons.admin_panel_settings_outlined, 'Área administrativa', () {
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 3),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: DVanilleLogo(height: 100),
+              ),
+              const SizedBox(height: 0.1),
+              const Divider(),
+              _drawerItem(
+                context,
+                Icons.home_outlined,
+                'Início',
+                () => Navigator.pop(context),
+              ),
+              _drawerItem(context, Icons.local_cafe_outlined, 'Conheça', () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/admin');
+                Navigator.pushNamed(context, '/conheca');
               }),
-            const Spacer(),
-            _drawerItem(context, Icons.logout, 'Sair', () {
-              state.logout();
-              Navigator.pushNamedAndRemoveUntil(context, '/login', (r) => false);
-            }),
-            const SizedBox(height: 16),
-          ],
+              _drawerItem(context, Icons.mail_outline, 'Contato', () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/contato');
+              }),
+              _drawerItem(context, Icons.favorite_border, 'Favoritos', () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/favoritos');
+              }),
+              _drawerItem(
+                context,
+                Icons.receipt_long_outlined,
+                'Meus pedidos',
+                () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/pedidos');
+                },
+              ),
+              _drawerItem(
+                context,
+                Icons.card_giftcard_outlined,
+                'Vale-presente',
+                () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/ofertas');
+                },
+              ),
+              _drawerItem(
+                context,
+                Icons.settings_outlined,
+                'Configurações',
+                () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/configuracoes');
+                },
+              ),
+              if (state.isAdmin)
+                _drawerItem(
+                  context,
+                  Icons.admin_panel_settings_outlined,
+                  'Área administrativa',
+                  () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/admin');
+                  },
+                ),
+              const SizedBox(height: 20),
+              _drawerItem(context, Icons.logout, 'Sair', () {
+                state.logout();
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/login',
+                  (r) => false,
+                );
+              }),
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _drawerItem(BuildContext context, IconData icon, String label, VoidCallback onTap) {
+  Widget _drawerItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    VoidCallback onTap,
+  ) {
     return ListTile(
       leading: Icon(icon, color: AppColors.brownStrong),
-      title: Text(label, style: const TextStyle(color: AppColors.brownStrong, fontWeight: FontWeight.w500)),
+      title: Text(
+        label,
+        style: const TextStyle(
+          color: AppColors.brownStrong,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
       onTap: onTap,
     );
   }

@@ -70,17 +70,18 @@ class _PurposeHeader extends StatelessWidget {
             fontFamily: 'CreamCake',
             fontSize: 42,
             height: 1.1,
-            color: AppColors.brownStrong,
+            color: AppColors.danger,
           ),
         ),
         SizedBox(height: 10),
         Text(
           'Uma experiência mais segura, acessível e acolhedora!',
           style: TextStyle(
+            fontStyle: FontStyle.italic,
             fontSize: 17,
             fontWeight: FontWeight.w600,
             height: 1.35,
-            color: AppColors.brown,
+            color: AppColors.brownStrong,
           ),
         ),
       ],
@@ -311,7 +312,7 @@ class _BeliefTile extends StatelessWidget {
 
 class _Address extends StatelessWidget {
   const _Address();
- 
+
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
@@ -320,13 +321,51 @@ class _Address extends StatelessWidget {
         children: [
           Divider(),
           SizedBox(height: 28),
+
           Text(
-            'Endereço: Rua Tal-Estado Tal, Número Tal',
+            'Endereço',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+              color: AppColors.brownStrong,
+            ),
+          ),
+
+          SizedBox(height: 8),
+
+          Text(
+            'Rua das Baunilhas, 245 — Jardim das Flores, São Paulo/SP',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontStyle: FontStyle.italic,
-              fontSize: 16,
-              height: 1.2,
+              fontSize: 15.5,
+              height: 1.4,
+              color: AppColors.brown,
+            ),
+          ),
+
+          SizedBox(height: 24),
+
+          Text(
+            'Horário',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+              color: AppColors.brownStrong,
+            ),
+          ),
+
+          SizedBox(height: 8),
+
+          Text(
+            'Terça a Sexta, 09h–20h · Sábado e Domingo, 10h–21h · Segunda, fechado',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: 15.5,
+              height: 1.4,
               color: AppColors.brown,
             ),
           ),
