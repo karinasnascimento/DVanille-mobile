@@ -27,6 +27,7 @@ flutter:
     - assets/lacinho.png
     - assets/1.png
     - assets/fachada.png
+    - assets/carrinho.png
 
   fonts:
   - family: CreamCake

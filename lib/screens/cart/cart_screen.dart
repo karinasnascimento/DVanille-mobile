@@ -108,7 +108,7 @@ class _CartEmptyState extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              'sacola_lacinho.png',
+              'carrinho.png',
               width: 90,
               height: 90,
               fit: BoxFit.contain,
