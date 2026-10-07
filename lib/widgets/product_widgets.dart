@@ -14,7 +14,9 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = AppState.instance;
     final isFav = state.isFavorite(product.id);
-    final precoExibido = product.emOferta ? product.precoOferta! : product.preco;
+    final precoExibido = product.emOferta
+        ? product.precoOferta!
+        : product.preco;
 
     return ListenableBuilder(
       listenable: state,
@@ -42,7 +44,10 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                       alignment: Alignment.center,
-                      child: Text(product.imagem, style: const TextStyle(fontSize: 40)),
+                      child: Text(
+                        product.imagem,
+                        style: const TextStyle(fontSize: 40),
+                      ),
                     ),
                     Positioned(
                       top: 6,
@@ -52,7 +57,9 @@ class ProductCard extends StatelessWidget {
                           state.toggleFavorite(product.id);
                           showBrandSnackBar(
                             context,
-                            isFav ? 'Removido dos favoritos.' : 'Adicionado aos favoritos.',
+                            isFav
+                                ? 'Removido dos favoritos.'
+                                : 'Adicionado aos favoritos.',
                             icon: Icons.favorite,
                           );
                         },
@@ -75,7 +82,10 @@ class ProductCard extends StatelessWidget {
                         top: 6,
                         left: 6,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColors.brown,
                             borderRadius: BorderRadius.circular(AppRadius.sm),
@@ -108,33 +118,35 @@ class ProductCard extends StatelessWidget {
                           color: AppColors.brownStrong,
                         ),
                       ),
-                      const SizedBox(height: 6),
+
+                      // Quando estiver em oferta, mostra o preço original
+                      // acima do preço promocional.
+                      if (product.emOferta) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          'R\$ ${product.preco.toStringAsFixed(2).replaceAll('.', ',')}',
+                          style: const TextStyle(
+                            fontSize: 10.5,
+                            color: AppColors.textMuted,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                      ],
+
+                      const SizedBox(height: 3),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                'R\$ ${precoExibido.toStringAsFixed(2).replaceAll('.', ',')}',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13,
-                                  color: AppColors.brownStrong,
-                                ),
-                              ),
-                              if (product.emOferta) ...[
-                                const SizedBox(width: 4),
-                                Text(
-                                  'R\$ ${product.preco.toStringAsFixed(2).replaceAll('.', ',')}',
-                                  style: const TextStyle(
-                                    fontSize: 10.5,
-                                    color: AppColors.textMuted,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ],
+                          Text(
+                            'R\$ ${precoExibido.toStringAsFixed(2).replaceAll('.', ',')}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 13,
+                              color: AppColors.brownStrong,
+                            ),
                           ),
+
                           GestureDetector(
                             onTap: () {
                               state.addToCart(product);
@@ -150,7 +162,11 @@ class ProductCard extends StatelessWidget {
                                 color: AppColors.brown,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Icon(Icons.add, color: Colors.white, size: 16),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 16,
+                              ),
                             ),
                           ),
                         ],
@@ -171,7 +187,12 @@ class CategoryChip extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  const CategoryChip({super.key, required this.label, required this.selected, required this.onTap});
+  const CategoryChip({
+    super.key,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +204,9 @@ class CategoryChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected ? AppColors.brown : AppColors.white,
           borderRadius: BorderRadius.circular(AppRadius.pill),
-          border: Border.all(color: selected ? AppColors.brown : AppColors.beige),
+          border: Border.all(
+            color: selected ? AppColors.brown : AppColors.beige,
+          ),
         ),
         child: Text(
           label,
@@ -214,12 +237,19 @@ class RestrictionChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12, color: AppColors.brownStrong)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 12, color: AppColors.brownStrong),
+          ),
           if (onRemove != null) ...[
             const SizedBox(width: 4),
             GestureDetector(
               onTap: onRemove,
-              child: const Icon(Icons.close, size: 14, color: AppColors.brownStrong),
+              child: const Icon(
+                Icons.close,
+                size: 14,
+                color: AppColors.brownStrong,
+              ),
             ),
           ],
         ],
@@ -244,10 +274,18 @@ class NutritionCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(value,
-              style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.brownStrong)),
+          Text(
+            value,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AppColors.brownStrong,
+            ),
+          ),
           const SizedBox(height: 2),
-          Text(label, style: const TextStyle(fontSize: 11, color: AppColors.textMuted)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+          ),
         ],
       ),
     );
