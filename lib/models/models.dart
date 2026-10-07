@@ -1,113 +1,70 @@
 import 'package:flutter/foundation.dart';
 
-/// As 15 condições/restrições alimentares obrigatórias.
 enum DietaryRestriction {
   aplv,
-  lactose,
-  celiaca,
-  glutenNaoCeliaca,
-  frutosDoMar,
-  peixes,
-  ovos,
-  amendoim,
-  oleaginosas,
   soja,
-  trigo,
-  gergelim,
+  oleaginosas,
+  semAcucarAdicionado,
+  semSalAdicionado,
   fodmap,
-  latexFruta,
-  milho,
+  lowCarb,
+  semAditivosArtificiais,
+  vegano,
+  vegetariano,
+  lactose,
+  semGluten,
 }
 
 extension DietaryRestrictionX on DietaryRestriction {
   String get label {
     switch (this) {
       case DietaryRestriction.aplv:
-        return 'Alergia ao leite de vaca (APLV)';
-      case DietaryRestriction.lactose:
-        return 'Intolerância à lactose';
-      case DietaryRestriction.celiaca:
-        return 'Doença celíaca (restrição ao glúten)';
-      case DietaryRestriction.glutenNaoCeliaca:
-        return 'Sensibilidade ao glúten não celíaca';
-      case DietaryRestriction.frutosDoMar:
-        return 'Alergia a frutos do mar';
-      case DietaryRestriction.peixes:
-        return 'Alergia a peixes';
-      case DietaryRestriction.ovos:
-        return 'Alergia a ovos';
-      case DietaryRestriction.amendoim:
-        return 'Alergia a amendoim';
-      case DietaryRestriction.oleaginosas:
-        return 'Alergia a castanhas e nozes (oleaginosas)';
+        return 'Sem APLV';
       case DietaryRestriction.soja:
-        return 'Alergia à soja';
-      case DietaryRestriction.trigo:
-        return 'Alergia ao trigo';
-      case DietaryRestriction.gergelim:
-        return 'Alergia ao gergelim';
+        return 'Sem Soja';
+      case DietaryRestriction.oleaginosas:
+        return 'Sem Oleaginosas';
+      case DietaryRestriction.semAcucarAdicionado:
+        return 'Sem Açúcar Adicionado';
+      case DietaryRestriction.semSalAdicionado:
+        return 'Sem Sal Adicionado';
       case DietaryRestriction.fodmap:
-        return 'Intolerância a FODMAPs';
-      case DietaryRestriction.latexFruta:
-        return 'Alergia ao látex-fruta (síndrome látex-fruta)';
-      case DietaryRestriction.milho:
-        return 'Intolerância ao milho';
-    }
-  }
-
-  String get shortLabel {
-    switch (this) {
-      case DietaryRestriction.aplv:
-        return 'APLV';
+        return 'Low FODMAP';
+      case DietaryRestriction.lowCarb:
+        return 'Low Carb';
+      case DietaryRestriction.semAditivosArtificiais:
+        return 'Sem Aditivos Artificiais';
+      case DietaryRestriction.vegano:
+        return 'Vegano';
+      case DietaryRestriction.vegetariano:
+        return 'Vegetariano';
       case DietaryRestriction.lactose:
         return 'Sem lactose';
-      case DietaryRestriction.celiaca:
-        return 'Doença celíaca';
-      case DietaryRestriction.glutenNaoCeliaca:
+      case DietaryRestriction.semGluten:
         return 'Sem glúten';
-      case DietaryRestriction.frutosDoMar:
-        return 'Frutos do mar';
-      case DietaryRestriction.peixes:
-        return 'Peixes';
-      case DietaryRestriction.ovos:
-        return 'Ovos';
-      case DietaryRestriction.amendoim:
-        return 'Amendoim';
-      case DietaryRestriction.oleaginosas:
-        return 'Oleaginosas';
-      case DietaryRestriction.soja:
-        return 'Soja';
-      case DietaryRestriction.trigo:
-        return 'Trigo';
-      case DietaryRestriction.gergelim:
-        return 'Gergelim';
-      case DietaryRestriction.fodmap:
-        return 'FODMAPs';
-      case DietaryRestriction.latexFruta:
-        return 'Látex-fruta';
-      case DietaryRestriction.milho:
-        return 'Milho';
     }
   }
+
+  String get shortLabel => label;
 }
 
-enum ProductCategory { doces, cafes, milkshakes, bolos, cupcakes, tortas }
+enum ProductCategory { bolos, salgados, doces, sobremesasGeladas, bebidasQuentes, bebidasGeladas }
 
 extension ProductCategoryX on ProductCategory {
   String get label {
     switch (this) {
-      case ProductCategory.doces:
-        return 'Doces';
-      case ProductCategory.cafes:
-        return 'Cafés';
-      case ProductCategory.milkshakes:
-        return 'Milkshakes';
       case ProductCategory.bolos:
         return 'Bolos';
-      case ProductCategory.cupcakes:
-        return 'Cupcakes';
-      case ProductCategory.tortas:
-        return 'Tortas';
+      case ProductCategory.salgados:
+        return 'Salgados';
+      case ProductCategory.doces:
+        return 'Doces';
+      case ProductCategory.sobremesasGeladas:
+        return 'Sobremesas Geladas';
+      case ProductCategory.bebidasQuentes:
+        return 'Bebidas Quentes';
+      case ProductCategory.bebidasGeladas:
+        return 'Bebidas Geladas';
     }
   }
 }
@@ -136,12 +93,12 @@ class Product {
   String descricao;
   ProductCategory categoria;
   double preco;
-  String imagem; // asset path ou emoji fallback
+  String imagem;
   String tamanho;
   NutritionInfo nutricao;
   List<String> ingredientes;
   List<String> alergenicos;
-  Set<DietaryRestriction> restricoes; // restrições que o produto NÃO atende
+  Set<DietaryRestriction> restricoes;
   bool popular;
   bool emOferta;
   double? precoOferta;
@@ -163,8 +120,6 @@ class Product {
     this.precoOferta,
   });
 
-  /// Retorna true se o produto é compatível com a [restricao] selecionada,
-  /// ou seja, o produto NÃO contém o gatilho daquela restrição.
   bool isCompativelCom(DietaryRestriction restricao) =>
       !restricoes.contains(restricao);
 

@@ -98,7 +98,7 @@ class _GiftCardScreenState extends State<GiftCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const valores = [25.0, 50.0, 100.0, 150.0];
+    const valores = [30.0, 50.0, 100.0, 150.0];
     return Scaffold(
       appBar: const DVanilleHeader(title: 'Vale-presente', showBack: true),
       body: Padding(

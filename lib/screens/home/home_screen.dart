@@ -126,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                const SectionTitle('Doces, milkshakes e cafés'),
+                const SectionTitle('Mais produtos'),
                 SizedBox(
                   height: 190,
                   child: ListView.separated(

@@ -346,18 +346,18 @@ class _AdminProductFormScreenState extends State<AdminProductFormScreen> {
 
   String _emojiFor(ProductCategory c) {
     switch (c) {
-      case ProductCategory.doces:
-        return '🍬';
-      case ProductCategory.cafes:
-        return '☕';
-      case ProductCategory.milkshakes:
-        return '🥤';
       case ProductCategory.bolos:
         return '🍰';
-      case ProductCategory.cupcakes:
-        return '🧁';
-      case ProductCategory.tortas:
-        return '🥧';
+      case ProductCategory.salgados:
+        return '🥪';
+      case ProductCategory.doces:
+        return '🍬';
+      case ProductCategory.sobremesasGeladas:
+        return '🍨';
+      case ProductCategory.bebidasQuentes:
+        return '☕';
+      case ProductCategory.bebidasGeladas:
+        return '🥤';
     }
   }
 
