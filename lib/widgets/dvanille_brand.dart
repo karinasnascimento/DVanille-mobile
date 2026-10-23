@@ -188,7 +188,7 @@ class SectionTitle extends StatelessWidget {
               color: AppColors.brownStrong,
             ),
           ),
-          if (trailing != null) trailing!,
+          ?trailing,
         ],
       ),
     );

@@ -25,11 +25,15 @@ class _LoginScreenState extends State<LoginScreen> {
             key: _formKey,
             child: Column(
               children: [
-                const SizedBox(height: 20),
-                const DVanilleLogo(height: 96),
-                const SizedBox(height: 18),
+                const DVanilleLogo(height: 70),
+                const SizedBox(height: 15),
                 Text('Bem-vinda à D\'Vanille',
-                    textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineSmall),
+                    textAlign: TextAlign.center, 
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontFamily: 'CreamCake', 
+                      fontSize: 45,
+                      color: AppColors.danger
+                    )),
                 const SizedBox(height: 6),
                 Text('Entre para continuar sua experiência doce.',
                     textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
