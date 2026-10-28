@@ -11,6 +11,7 @@ class DVanilleLogo extends StatelessWidget {
       'assets/logo.3.png',
       height: height,
       fit: BoxFit.contain,
+      width: 170,
       errorBuilder: (_, __, ___) => Text(
         "D'Vanille",
         style: TextStyle(
